@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hornbill Technology Solutions Limited — security systems, IT hardware, software, SaaS, and digital marketing." />
   <title>Hornbill Technology Solutions Limited</title>
   <style>
     :root {
       --brand: #ff7a00;
       --brand-strong: #e86a00;
       --bg: #0f1012;
-      --card: #16181c;
+      --surface: #14161b;
+      --card: #171a1f;
       --card-alt: #1d2026;
       --text: #f4f5f7;
       --muted: #b7bbc3;
       --border: #262a31;
-      --shadow: 0 14px 40px rgba(0,0,0,0.35);
-      --radius: 14px;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
+      --radius: 16px;
       --transition: 200ms ease;
+      --max-width: 1100px;
     }
     * { box-sizing: border-box; }
     body {
@@ -29,101 +32,146 @@
     }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
+    button { font: inherit; }
     header {
       position: sticky; top: 0; z-index: 10;
-      background: rgba(15,16,18,0.9); backdrop-filter: blur(10px);
+      background: rgba(15,16,18,0.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav {
-      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      max-width: var(--max-width); margin: 0 auto; padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     .brand {
-      font-weight: 700; font-size: 18px; color: var(--brand); letter-spacing: 0.2px;
+      font-weight: 800; font-size: 18px; color: var(--brand); letter-spacing: 0.2px;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .nav-links { display: flex; gap: 14px; }
+    .brand-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--brand);
+      box-shadow: 0 0 0 6px rgba(255, 122, 0, 0.15);
+    }
+    .nav-links {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
+    }
     .nav-links a {
-      padding: 8px 12px; border-radius: 10px; color: var(--muted);
+      padding: 10px 12px; border-radius: 12px; color: var(--muted);
       transition: var(--transition);
+      font-weight: 600; font-size: 14px;
     }
-    .nav-links a:hover { background: var(--border); color: var(--text); }
+    .nav-links a:hover, .nav-links a:focus-visible {
+      background: var(--border); color: var(--text); outline: none;
+    }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      gap: 8px; padding: 12px 16px; border-radius: 12px; border: none;
-      cursor: pointer; font-weight: 600; transition: var(--transition);
-      text-decoration: none;
+      gap: 8px; padding: 12px 16px; border-radius: 12px; border: 1px solid transparent;
+      cursor: pointer; font-weight: 700; transition: var(--transition);
+      text-decoration: none; min-width: 44px; min-height: 44px;
     }
     .btn-primary { background: var(--brand); color: #0f1012; }
-    .btn-primary:hover { background: var(--brand-strong); }
-    .btn-secondary { background: transparent; color: var(--brand); border: 1px solid var(--border); }
-    .btn-secondary:hover { border-color: var(--brand); color: var(--text); }
-    main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 80px; }
+    .btn-primary:hover, .btn-primary:focus-visible { background: var(--brand-strong); outline: none; }
+    .btn-secondary {
+      background: transparent; color: var(--brand); border-color: var(--border);
+    }
+    .btn-secondary:hover, .btn-secondary:focus-visible {
+      border-color: var(--brand); color: var(--text); outline: none;
+    }
+    main { max-width: var(--max-width); margin: 0 auto; padding: 28px 18px 72px; }
     .hero {
-      display: grid; gap: 20px; align-items: center;
-      padding: 28px; border-radius: 18px;
-      background: linear-gradient(135deg, #191c22, #0f1012 70%);
+      display: grid; gap: 18px; align-items: center;
+      padding: 24px; border-radius: 20px;
+      background: radial-gradient(120% 120% at 15% 20%, rgba(255,122,0,0.12), transparent 45%),
+                  linear-gradient(140deg, #191c22, #0f1012 65%);
       box-shadow: var(--shadow); border: 1px solid var(--border);
     }
-    .hero h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 42px); color: #fff; }
+    .hero h1 {
+      margin: 0 0 10px; font-size: clamp(26px, 5vw, 40px); color: #fff;
+      letter-spacing: -0.02em; line-height: 1.2;
+    }
     .hero p { margin: 0 0 18px; color: var(--muted); font-size: 16px; }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border);
+      background: var(--card-alt); color: var(--muted); font-size: 13px;
+    }
     .section-title {
-      margin: 48px 0 16px; display: flex; align-items: center; gap: 10px;
-      font-size: 22px; color: #fff;
+      margin: 42px 0 16px; display: flex; align-items: center; gap: 10px;
+      font-size: 22px; color: #fff; letter-spacing: -0.01em;
     }
     .section-title::before {
-      content: ""; display: inline-block; width: 32px; height: 3px;
+      content: ""; display: inline-block; width: 36px; height: 3px;
       background: var(--brand); border-radius: 999px;
     }
     .grid {
-      display: grid; gap: 16px;
+      display: grid; gap: 14px;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
     .card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
-      display: flex; flex-direction: column; gap: 12px;
+      border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
     }
-    .card h3 { margin: 0; font-size: 18px; color: #fff; }
-    .card p { margin: 0; color: var(--muted); }
-    .card-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,122,0,0.5);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.42);
+    }
+    .card h3 { margin: 0; font-size: 17px; color: #fff; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     footer {
-      margin-top: 48px; padding: 28px 20px; background: #0a0b0d; color: #e6e7eb;
+      margin-top: 44px; padding: 26px 18px; background: #0a0b0d; color: #e6e7eb;
       border-top: 1px solid var(--border);
     }
     footer .footer-inner {
-      max-width: 1200px; margin: 0 auto; display: grid;
-      gap: 14px; align-items: center; grid-template-columns: 1fr; text-align: center;
+      max-width: var(--max-width); margin: 0 auto; display: grid;
+      gap: 12px; align-items: center; grid-template-columns: 1fr; text-align: center;
     }
     footer .cta { display: inline-flex; justify-content: center; }
     .subtle { color: #a2a6af; font-size: 14px; }
     /* Modal */
     .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-      display: none; align-items: center; justify-content: center; padding: 18px; z-index: 50;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center; padding: 16px; z-index: 50;
     }
     .modal {
       background: var(--card-alt); max-width: 520px; width: 100%;
-      border-radius: 16px; padding: 20px; box-shadow: var(--shadow); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px; box-shadow: var(--shadow); border: 1px solid var(--border);
       color: var(--text);
     }
     .modal header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .modal h4 { margin: 0; font-size: 18px; color: #fff; }
     .modal button.close {
-      background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted);
+      background: none; border: 1px solid transparent; font-size: 20px; cursor: pointer; color: var(--muted);
+      border-radius: 10px; width: 36px; height: 36px;
     }
-    .modal ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .modal button.close:hover, .modal button.close:focus-visible {
+      border-color: var(--border); color: var(--text); outline: none;
+    }
+    .modal ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
     .modal ul li { margin: 6px 0; }
-    @media (min-width: 900px) {
-      .hero { grid-template-columns: 1.2fr 0.8fr; }
+    /* Mobile adjustments */
+    @media (max-width: 720px) {
+      .nav { padding: 12px 14px; }
+      .nav-links { gap: 6px; }
+      .nav-links a { padding: 9px 10px; font-size: 13px; }
+      main { padding: 24px 14px 64px; }
+      .hero { padding: 20px; border-radius: 16px; }
+      .card { padding: 14px; border-radius: 14px; }
+      .btn { width: 100%; justify-content: center; }
+      .card-actions { flex-direction: column; }
+      .hero-ctas { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0ms !important; transition-duration: 0ms !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <div class="brand">Hornbill Technology Solutions Limited</div>
-      <nav class="nav-links">
+      <div class="brand"><span class="brand-dot"></span>Hornbill Technology Solutions Limited</div>
+      <nav class="nav-links" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
         <a href="https://wa.me/254759293030?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99d%20like%20to%20chat%20about%20your%20solutions." target="_blank" rel="noopener">WhatsApp</a>
@@ -141,10 +189,10 @@
           <a class="btn btn-secondary" href="#services">View Our Services</a>
         </div>
       </div>
-      <div style="display:grid; gap:10px; color:var(--muted); font-size:14px;">
-        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background: var(--card-alt);">Trusted security & IT partner</div>
-        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background: var(--card-alt);">WhatsApp-first support</div>
-        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background: var(--card-alt);">End-to-end delivery</div>
+      <div style="display:grid; gap:10px; color:var(--muted); font-size:13px;">
+        <div class="pill">Trusted security & IT partner</div>
+        <div class="pill">WhatsApp-first support</div>
+        <div class="pill">End-to-end delivery</div>
       </div>
     </section>
 
@@ -201,11 +249,11 @@
   <footer id="contact">
     <div class="footer-inner">
       <div>
-        <strong>Hornbill Technology Solutions Limited</strong><br>
+        <strong>Hornbill Technology Solutions Limited</strong><br />
         Security • IT Hardware • Software • SaaS • Digital Marketing
       </div>
       <div class="subtle">
-        Email: info@hornbill.tech • Phone: +254 700 000000<br>
+        Email: info@hornbilltech.com • Phone: +254 759293030<br />
         Nairobi, Kenya • Serving homes, businesses, and organizations
       </div>
       <div class="cta">

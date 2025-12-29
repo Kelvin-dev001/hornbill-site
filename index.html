@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hornbill Technology Solutions Limited</title>
+  <style>
+    :root {
+      --brand: #0a6d5d;
+      --brand-dark: #065244;
+      --accent: #f4a124;
+      --bg: #f7f9fb;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
+      --radius: 14px;
+      --transition: 200ms ease;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,0.94); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand {
+      font-weight: 700; font-size: 18px; color: var(--brand-dark); letter-spacing: 0.2px;
+    }
+    .nav-links { display: flex; gap: 14px; }
+    .nav-links a {
+      padding: 8px 12px; border-radius: 10px; color: var(--muted);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { background: var(--border); color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 12px 16px; border-radius: 12px; border: none;
+      cursor: pointer; font-weight: 600; transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-dark); }
+    .btn-secondary { background: #fff; color: var(--brand); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--brand); color: var(--brand-dark); }
+    .btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--border); }
+    main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 80px; }
+    .hero {
+      display: grid; gap: 20px; align-items: center;
+      padding: 28px; border-radius: 18px; background: linear-gradient(135deg, #ffffff, #f2f7f5);
+      box-shadow: var(--shadow);
+    }
+    .hero h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 42px); color: var(--brand-dark); }
+    .hero p { margin: 0 0 18px; color: var(--muted); font-size: 16px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .section-title {
+      margin: 48px 0 16px; display: flex; align-items: center; gap: 10px;
+      font-size: 22px; color: var(--brand-dark);
+    }
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .card h3 { margin: 0; font-size: 18px; color: var(--text); }
+    .card p { margin: 0; color: var(--muted); }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    footer {
+      margin-top: 48px; padding: 28px 20px; background: #0b1f1a; color: #dce7e3;
+    }
+    footer .footer-inner {
+      max-width: 1200px; margin: 0 auto; display: grid;
+      gap: 14px; align-items: center; grid-template-columns: 1fr; text-align: center;
+    }
+    footer .cta { display: inline-flex; justify-content: center; }
+    .subtle { color: #a5b3ae; font-size: 14px; }
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      display: none; align-items: center; justify-content: center; padding: 18px; z-index: 50;
+    }
+    .modal {
+      background: #fff; max-width: 520px; width: 100%;
+      border-radius: 16px; padding: 20px; box-shadow: var(--shadow);
+    }
+    .modal header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .modal h4 { margin: 0; font-size: 18px; color: var(--brand-dark); }
+    .modal button.close {
+      background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted);
+    }
+    .modal ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .modal ul li { margin: 6px 0; }
+    @media (min-width: 900px) {
+      .hero { grid-template-columns: 1.2fr 0.8fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">Hornbill Technology Solutions Limited</div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99d%20like%20to%20chat%20about%20your%20solutions." target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div>
+        <h1>Smart Technology Solutions for Homes and Businesses</h1>
+        <p>Security systems, IT hardware, software, and digital solutions — all in one place.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20your%20solutions.%20Please%20assist." target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+          <a class="btn btn-secondary" href="#services">View Our Services</a>
+        </div>
+      </div>
+      <div style="display:grid; gap:10px; color:var(--muted); font-size:14px;">
+        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background:#fff;">Trusted security & IT partner</div>
+        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background:#fff;">WhatsApp-first support</div>
+        <div style="padding:14px; border:1px solid var(--border); border-radius:12px; background:#fff;">End-to-end delivery</div>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="services">Our Services</h2>
+    <section class="grid">
+      <!-- Security -->
+      <article class="card">
+        <h3>Home & Business Security Systems</h3>
+        <p>Modern security and automation solutions for homes and commercial spaces.</p>
+        <div class="card-actions">
+          <button class="btn btn-secondary" data-modal="security">View Details</button>
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20your%20Home%20%26%20Business%20Security%20Systems.%20Please%20share%20more%20details." target="_blank" rel="noopener">WhatsApp Checkout</a>
+        </div>
+      </article>
+      <!-- Devices -->
+      <article class="card">
+        <h3>Computers, Phones & Accessories</h3>
+        <p>Sales, servicing, and repair of IT devices and office equipment.</p>
+        <div class="card-actions">
+          <button class="btn btn-secondary" data-modal="devices">View Details</button>
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20Computers%2C%20Phones%20%26%20Accessories.%20Please%20share%20options%20or%20repair%20support." target="_blank" rel="noopener">WhatsApp Checkout</a>
+        </div>
+      </article>
+      <!-- Boonifu -->
+      <article class="card">
+        <h3>Boonifu – Be Seen Solutions</h3>
+        <p>Online presence, marketing, and customer engagement solutions for businesses.</p>
+        <div class="card-actions">
+          <button class="btn btn-secondary" data-modal="boonifu">View Details</button>
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20Boonifu%20marketing%20solutions.%20Please%20share%20details." target="_blank" rel="noopener">WhatsApp Checkout</a>
+        </div>
+      </article>
+      <!-- Software -->
+      <article class="card">
+        <h3>Software Development</h3>
+        <p>Custom software and automation solutions built for your needs.</p>
+        <div class="card-actions">
+          <button class="btn btn-secondary" data-modal="software">View Details</button>
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20Software%20Development%20services.%20Please%20share%20more%20details." target="_blank" rel="noopener">WhatsApp Checkout</a>
+        </div>
+      </article>
+      <!-- SaaS -->
+      <article class="card">
+        <h3>SaaS Products</h3>
+        <p>Ready-to-use software products built for real-world problems.</p>
+        <div class="card-actions">
+          <button class="btn btn-secondary" data-modal="saas">View Details</button>
+          <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99m%20interested%20in%20your%20SaaS%20products%20or%20a%20KwaGround%20demo.%20Please%20share%20details." target="_blank" rel="noopener">WhatsApp Checkout</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>
+        <strong>Hornbill Technology Solutions Limited</strong><br>
+        Security • IT Hardware • Software • SaaS • Digital Marketing
+      </div>
+      <div class="subtle">
+        Email: info@hornbill.tech • Phone: +254 700 000000<br>
+        Nairobi, Kenya • Serving homes, businesses, and organizations
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://wa.me/254700000000?text=Hello%20Hornbill%20Technology%20Solutions%2C%20I%E2%80%99d%20like%20to%20chat%20about%20your%20solutions." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header>
+        <h4 id="modal-title"></h4>
+        <button class="close" aria-label="Close modal">&times;</button>
+      </header>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const modalData = {
+      security: {
+        title: "Home & Business Security Systems",
+        items: [
+          "AI-enabled CCTV solutions (residential & commercial)",
+          "Biometric access control systems",
+          "Employee time attendance & payroll systems",
+          "Electric fencing (installation, maintenance, repair)",
+          "Gate automation systems",
+          "Solar solutions",
+          "Smart home solutions",
+          "Smart barriers"
+        ]
+      },
+      devices: {
+        title: "Computers, Phones & Accessories",
+        items: [
+          "Desktop computer sales",
+          "Laptop sales",
+          "Mobile phone sales",
+          "Printer sales",
+          "Accessories",
+          "Device servicing and repairs"
+        ]
+      },
+      boonifu: {
+        title: "Boonifu – Be Seen Solutions",
+        items: [
+          "Social media management kits (posters, videos, posting, ad boosting, reporting)",
+          "AI-powered sales chatbot (standard chatbot customized per business)",
+          "WhatsApp broadcast (bulk WhatsApp messaging)",
+          "Bulk SMS services",
+          "Marketing posters & videos",
+          "E-commerce solutions",
+          "Search engine & LLM keyword optimization"
+        ]
+      },
+      software: {
+        title: "Software Development",
+        items: [
+          "Process automation",
+          "AI agents",
+          "n8n workflows",
+          "Mobile app development",
+          "Custom software development",
+          "Idea-to-software project execution"
+        ]
+      },
+      saas: {
+        title: "SaaS Products",
+        items: [
+          "KwaGround: WhatsApp-based reporting tool that ingests WhatsApp messages, normalizes them into structured reports, and delivers summaries and query responses to managers without changing user behavior."
+        ]
+      }
+    };
+
+    const backdrop = document.getElementById("modal-backdrop");
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
+    const closeBtn = backdrop.querySelector(".close");
+
+    function openModal(key) {
+      const data = modalData[key];
+      if (!data) return;
+      modalTitle.textContent = data.title;
+      modalBody.innerHTML = "<ul>" + data.items.map(i => `<li>${i}</li>`).join("") + "</ul>";
+      backdrop.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      backdrop.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll("[data-modal]").forEach(btn => {
+      btn.addEventListener("click", () => openModal(btn.dataset.modal));
+    });
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
+
+    // Smooth scroll for same-page links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").slice(1);
+        const el = document.getElementById(targetId);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
